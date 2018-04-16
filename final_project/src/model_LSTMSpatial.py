@@ -11,7 +11,7 @@
 import tensorflow as tf
 from ops import *
 
-class bi_convlstm_net(object):
+class JingxiNet(object):
     def __init__(self):
         self.nstates = {64, 15, 5}
         self.filtrowsize = {91, 1}
@@ -22,8 +22,9 @@ class bi_convlstm_net(object):
 
     def create_model(self):
 
-        self.audio_pl = tf.placeholder(tf.float32, [-1, 6, 68], name="audio_pl")
-        self.video_pl = tf.placeholder(tf.float32, [-1, 6, 112, 112, 3], name="audio_pl")
+        self.ground_truth = tf.placeholder(tf.float32, shape=[None, 6, 5], name="ground_truth")
+        self.audio_pl = tf.placeholder(tf.float32, shape=[None, 6, 68], name="audio_pl")
+        self.video_pl = tf.placeholder(tf.float32, shape=[None, 6, 112, 112, 3], name="video_pl")
 
         # -- -1 * 6 x 68 --> -1 * 6 x 32
         audio_branch = tf.reshape(self.audio_pl,[-1, 68])
