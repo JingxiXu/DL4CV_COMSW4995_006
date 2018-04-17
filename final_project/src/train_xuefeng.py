@@ -140,6 +140,10 @@ def get_logdirs_and_modelname(PARAMS):
     output_model_name = "JingxiNet"
     return output_dir, output_model_name
 
+def scope_variables(name):
+    with tf.variable_scope(name):
+        return tf.get_collection(tf.GraphKeys.GLOBAL_VARIABLES, 
+                       scope=tf.get_variable_scope().name)
 
 # In[25]:
 
