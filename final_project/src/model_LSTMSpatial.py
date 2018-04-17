@@ -12,13 +12,13 @@ import tensorflow as tf
 from ops import *
 
 class JingxiNet(object):
-    def __init__(self):
-        self.nstates = {64, 15, 5}
-        self.filtrowsize = {91, 1}
-        self.filtcolsize = {39, 5}
-        self.rowstrides = {30, 1}
-        self.colstrides = {1, 2}
-        self.audio_dim = 68
+    #def __init__(self):
+        #self.nstates = {64, 15, 5}
+        #self.filtrowsize = {91, 1}
+        #self.filtcolsize = {39, 5}
+        #self.rowstrides = {30, 1}
+        #self.colstrides = {1, 2}
+        #self.audio_dim = 68
 
     def create_model(self):
 
