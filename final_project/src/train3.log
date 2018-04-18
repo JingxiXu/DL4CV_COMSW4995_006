@@ -1,0 +1,142 @@
+nohup: ignoring input
+/home/jingxi/anaconda3/envs/personality_analysis/lib/python2.7/site-packages/h5py/__init__.py:36: FutureWarning: Conversion of the second argument of issubdtype from `float` to `np.floating` is deprecated. In future, it will be treated as `np.float64 == np.dtype(float).type`.
+  from ._conv import register_converters as _register_converters
+Running onpineapple
+Graph defined and initialized in 3.93039894104s.
+[<tf.Variable 'JingxiNet/Variable:0' shape=() dtype=int32_ref>, <tf.Variable 'JingxiNet/au_fc1/Matrix:0' shape=(68, 32) dtype=float32_ref>, <tf.Variable 'JingxiNet/au_fc1/bias:0' shape=(32,) dtype=float32_ref>, <tf.Variable 'JingxiNet/vd_conv1/w:0' shape=(5, 5, 3, 16) dtype=float32_ref>, <tf.Variable 'JingxiNet/vd_conv1/biases:0' shape=(16,) dtype=float32_ref>, <tf.Variable 'JingxiNet/vd_conv2/w:0' shape=(7, 7, 16, 16) dtype=float32_ref>, <tf.Variable 'JingxiNet/vd_conv2/biases:0' shape=(16,) dtype=float32_ref>, <tf.Variable 'JingxiNet/vd_conv3/w:0' shape=(9, 9, 16, 16) dtype=float32_ref>, <tf.Variable 'JingxiNet/vd_conv3/biases:0' shape=(16,) dtype=float32_ref>, <tf.Variable 'JingxiNet/vd_fc1/Matrix:0' shape=(1024, 128) dtype=float32_ref>, <tf.Variable 'JingxiNet/vd_fc1/bias:0' shape=(128,) dtype=float32_ref>, <tf.Variable 'JingxiNet/rnn/lstm_cell/kernel:0' shape=(288, 640) dtype=float32_ref>, <tf.Variable 'JingxiNet/rnn/lstm_cell/bias:0' shape=(640,) dtype=float32_ref>, <tf.Variable 'JingxiNet/rnn/lstm_cell/projection/kernel:0' shape=(160, 128) dtype=float32_ref>, <tf.Variable 'JingxiNet/fea_fc1/Matrix:0' shape=(128, 5) dtype=float32_ref>, <tf.Variable 'JingxiNet/fea_fc1/bias:0' shape=(5,) dtype=float32_ref>, <tf.Variable 'JingxiNet/JingxiNet/au_fc1/Matrix/Momentum:0' shape=(68, 32) dtype=float32_ref>, <tf.Variable 'JingxiNet/JingxiNet/au_fc1/bias/Momentum:0' shape=(32,) dtype=float32_ref>, <tf.Variable 'JingxiNet/JingxiNet/vd_conv1/w/Momentum:0' shape=(5, 5, 3, 16) dtype=float32_ref>, <tf.Variable 'JingxiNet/JingxiNet/vd_conv1/biases/Momentum:0' shape=(16,) dtype=float32_ref>, <tf.Variable 'JingxiNet/JingxiNet/vd_conv2/w/Momentum:0' shape=(7, 7, 16, 16) dtype=float32_ref>, <tf.Variable 'JingxiNet/JingxiNet/vd_conv2/biases/Momentum:0' shape=(16,) dtype=float32_ref>, <tf.Variable 'JingxiNet/JingxiNet/vd_conv3/w/Momentum:0' shape=(9, 9, 16, 16) dtype=float32_ref>, <tf.Variable 'JingxiNet/JingxiNet/vd_conv3/biases/Momentum:0' shape=(16,) dtype=float32_ref>, <tf.Variable 'JingxiNet/JingxiNet/vd_fc1/Matrix/Momentum:0' shape=(1024, 128) dtype=float32_ref>, <tf.Variable 'JingxiNet/JingxiNet/vd_fc1/bias/Momentum:0' shape=(128,) dtype=float32_ref>, <tf.Variable 'JingxiNet/JingxiNet/rnn/lstm_cell/kernel/Momentum:0' shape=(288, 640) dtype=float32_ref>, <tf.Variable 'JingxiNet/JingxiNet/rnn/lstm_cell/bias/Momentum:0' shape=(640,) dtype=float32_ref>, <tf.Variable 'JingxiNet/JingxiNet/rnn/lstm_cell/projection/kernel/Momentum:0' shape=(160, 128) dtype=float32_ref>, <tf.Variable 'JingxiNet/JingxiNet/fea_fc1/Matrix/Momentum:0' shape=(128, 5) dtype=float32_ref>, <tf.Variable 'JingxiNet/JingxiNet/fea_fc1/bias/Momentum:0' shape=(5,) dtype=float32_ref>]
+epoch:0, batch1, load frames use: 5.02292609215s
+step 0/400000: train loss: 0.659672
+epoch:0, batch2, load frames use: 5.88464212418s
+step 1/400000: train loss: 0.610969
+epoch:0, batch3, load frames use: 6.65550994873s
+step 2/400000: train loss: 0.819123
+epoch:0, batch4, load frames use: 5.62235498428s
+step 3/400000: train loss: 0.772086
+epoch:0, batch5, load frames use: 6.33384919167s
+step 4/400000: train loss: 0.598349
+epoch:0, batch6, load frames use: 4.82898688316s
+step 5/400000: train loss: 0.580532
+epoch:0, batch7, load frames use: 6.53188705444s
+step 6/400000: train loss: 0.601108
+epoch:0, batch8, load frames use: 6.87365698814s
+step 7/400000: train loss: 0.635473
+epoch:0, batch9, load frames use: 6.35379195213s
+step 8/400000: train loss: 0.688005
+epoch:0, batch10, load frames use: 6.06131911278s
+step 9/400000: train loss: 0.805091
+epoch:0, batch11, load frames use: 5.92143988609s
+step 10/400000: train loss: 0.654463
+epoch:0, batch12, load frames use: 5.6406750679s
+step 11/400000: train loss: 0.680887
+epoch:0, batch13, load frames use: 5.86862301826s
+step 12/400000: train loss: 0.641872
+epoch:0, batch14, load frames use: 8.01527285576s
+step 13/400000: train loss: 0.629232
+epoch:0, batch15, load frames use: 6.94094109535s
+step 14/400000: train loss: 0.710197
+epoch:0, batch16, load frames use: 5.45295619965s
+step 15/400000: train loss: 0.578461
+epoch:0, batch17, load frames use: 6.40451407433s
+step 16/400000: train loss: 0.731051
+epoch:0, batch18, load frames use: 5.90826511383s
+step 17/400000: train loss: 0.653507
+epoch:0, batch19, load frames use: 7.76533603668s
+step 18/400000: train loss: 0.784636
+epoch:0, batch20, load frames use: 5.80158305168s
+step 19/400000: train loss: 0.569097
+epoch:0, batch21, load frames use: 6.40400314331s
+step 20/400000: train loss: 0.641426
+epoch:0, batch22, load frames use: 5.97795200348s
+step 21/400000: train loss: 0.681497
+epoch:0, batch23, load frames use: 5.78982806206s
+step 22/400000: train loss: 0.700923
+epoch:0, batch24, load frames use: 5.53271794319s
+step 23/400000: train loss: 0.660643
+epoch:0, batch25, load frames use: 6.72542691231s
+step 24/400000: train loss: 0.830030
+epoch:0, batch26, load frames use: 5.90350794792s
+step 25/400000: train loss: 0.605317
+epoch:0, batch27, load frames use: 6.13827610016s
+step 26/400000: train loss: 0.634395
+epoch:0, batch28, load frames use: 6.49689602852s
+step 27/400000: train loss: 0.831265
+epoch:0, batch29, load frames use: 5.89218306541s
+step 28/400000: train loss: 0.758869
+epoch:0, batch30, load frames use: 6.15901899338s
+step 29/400000: train loss: 0.617696
+epoch:0, batch31, load frames use: 5.7815310955s
+step 30/400000: train loss: 0.669115
+epoch:0, batch32, load frames use: 5.46120214462s
+step 31/400000: train loss: 0.693744
+epoch:0, batch33, load frames use: 5.88774204254s
+step 32/400000: train loss: 0.710603
+epoch:0, batch34, load frames use: 5.93889212608s
+step 33/400000: train loss: 0.648559
+epoch:0, batch35, load frames use: 8.18406391144s
+step 34/400000: train loss: 0.576537
+epoch:0, batch36, load frames use: 6.16634511948s
+step 35/400000: train loss: 0.695064
+epoch:0, batch37, load frames use: 6.16394400597s
+step 36/400000: train loss: 0.566544
+epoch:0, batch38, load frames use: 6.04225707054s
+step 37/400000: train loss: 0.622564
+epoch:0, batch39, load frames use: 5.24359107018s
+step 38/400000: train loss: 0.591584
+epoch:0, batch40, load frames use: 5.0532310009s
+step 39/400000: train loss: 0.585163
+epoch:0, batch41, load frames use: 5.22230100632s
+step 40/400000: train loss: 0.667148
+epoch:0, batch42, load frames use: 5.2487180233s
+step 41/400000: train loss: 0.683348
+epoch:0, batch43, load frames use: 5.14877104759s
+step 42/400000: train loss: 0.800792
+epoch:0, batch44, load frames use: 5.14936685562s
+step 43/400000: train loss: 0.627552
+epoch:0, batch45, load frames use: 5.18148708344s
+step 44/400000: train loss: 0.824340
+epoch:0, batch46, load frames use: 5.62611293793s
+step 45/400000: train loss: 0.642651
+epoch:1, batch1, load frames use: 5.23406100273s
+step 46/400000: train loss: 0.591877
+epoch:1, batch2, load frames use: 5.59343194962s
+step 47/400000: train loss: 0.623712
+epoch:1, batch3, load frames use: 6.23780584335s
+step 48/400000: train loss: 0.735449
+epoch:1, batch4, load frames use: 6.32747101784s
+step 49/400000: train loss: 0.643698
+epoch:1, batch5, load frames use: 6.02650094032s
+step 50/400000: train loss: 0.687903
+epoch:1, batch6, load frames use: 5.96994996071s
+step 51/400000: train loss: 0.696048
+epoch:1, batch7, load frames use: 6.45065283775s
+step 52/400000: train loss: 0.755943
+epoch:1, batch8, load frames use: 6.20785403252s
+step 53/400000: train loss: 0.656747
+epoch:1, batch9, load frames use: 5.89548492432s
+step 54/400000: train loss: 0.623627
+epoch:1, batch10, load frames use: 5.90841817856s
+step 55/400000: train loss: 0.695407
+epoch:1, batch11, load frames use: 5.21190810204s
+step 56/400000: train loss: 0.736957
+epoch:1, batch12, load frames use: 5.05185413361s
+step 57/400000: train loss: 0.633056
+epoch:1, batch13, load frames use: 4.95039010048s
+step 58/400000: train loss: 0.741608
+epoch:1, batch14, load frames use: 5.94016599655s
+step 59/400000: train loss: 0.742845
+epoch:1, batch15, load frames use: 6.17296600342s
+step 60/400000: train loss: 0.637788
+epoch:1, batch16, load frames use: 5.57621192932s
+step 61/400000: train loss: 0.602498
+epoch:1, batch17, load frames use: 5.82354283333s
+step 62/400000: train loss: 0.716051
+epoch:1, batch18, load frames use: 5.55648589134s
+step 63/400000: train loss: 0.695650
+epoch:1, batch19, load frames use: 5.54279398918s
+step 64/400000: train loss: 0.712523
+epoch:1, batch20, load frames use: 5.74596619606s
+step 65/400000: train loss: 0.708732
+epoch:1, batch21, load frames use: 5.91296195984s
+step 66/400000: train loss: 0.624668
+epoch:1, batch22, load frames use: 5.67189311981s
+step 67/400000: train loss: 0.610453
