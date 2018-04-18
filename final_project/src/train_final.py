@@ -75,14 +75,15 @@ def scope_variables(name):
 
 
 if __name__ == "__main__":
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--gpu", type=int, dest="gpu", default=0, help="which GPU device to use")
+    args = parser.parse_args()
 
     # the program can only see this particular GPU
-    os.environ["CUDA_VISIBLE_DEVICES"] = "0"
+    os.environ["CUDA_VISIBLE_DEVICES"] = str(args.gpu)
     # disable tensorflow debugging log
     os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3' 
-    parser = argparse.ArgumentParser()
-    parser.add_argument("--gpu", type=int, dest="gpu", default=0, help="Which GPU device to use")
-    args = parser.parse_args()
+
     ## log_output_dir is the overall folder for log info
     ## tensorboard_dir is the sub-folder for tensorboard log
     ## output_model_name = "JingxiNet"
@@ -104,7 +105,7 @@ if __name__ == "__main__":
         #did not use weight decay!!!!!
         train_jx = tf.train.MomentumOptimizer(lr, PARAMS.momentum).minimize(loss,global_step=global_step)
 
-        with tf.device('/gpu:0'):
+        with tf.device('/gpu:' + str(args.gpu)):
             sess = tf.InteractiveSession(config=tf.ConfigProto(allow_soft_placement=True, log_device_placement=False))
             sess.run(tf.global_variables_initializer())
             print("Graph defined and initialized in {}s.".format(time.time() - start_ts))
