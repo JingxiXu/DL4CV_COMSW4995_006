@@ -1,3 +1,15 @@
+'''
+
+----------------------------------------------------------------------
+-- Some helpler functions to get a batch of videos, audio and ground
+-- truth for training and validation
+
+-- Jingxi Xu
+----------------------------------------------------------------------
+
+'''
+
+
 import tensorflow as tf
 import pandas as pd
 import numpy as np
@@ -7,7 +19,6 @@ import matplotlib.image as mpimg
 import logging
 import time
 from joblib import Parallel, delayed
-
 
 
 train_target_file = '/data/junting/DL4CV_COMSW4995_006/final_project/training_gt.csv'
@@ -83,6 +94,48 @@ def get_next_batch(batch_size):
         start += batch_size
         yield batch
 
+# get a batch of video audio and ground truth for validation
+def get_next_validation_batch(batch_size):
+    batch = {}
+    length = len(validation_mp4_names)
+    validation_names=np.random.permutation(validation_mp4_names)
+    epoch_count = 0
+    batch_count = 0
+    start = 0
+    while True:
+        # randomly choose a list of mp4 names to consist the batch
+        print(start)
+        if start >= length or start + batch_size > length:
+            break
+        mp4_names = validation_names[start: start + batch_size]
+        batch_count += 1
+        # get video batches -> batch_size * 6 * 112 * 112 * 3
+        # video = np.zeros((batch_size, 6, 112, 112, 3))
+        pre_time = time.time()
+        vid_names = np.array(mp4_names)
+        with Parallel(n_jobs=batch_size/4) as parallel:
+            frames = parallel(delayed(load_validation_vid_img)(vid_name)
+                              for vid_name in vid_names)
+            video = np.asarray(frames)
+        print("epoch:{}, batch{}, load frames use: {}s".format(epoch_count, batch_count, time.time()-pre_time))
+                # get audio batches -> batch_size * 6 * 68
+        audio = np.zeros((batch_size, 6, 68))
+        for batch_num, mp4 in enumerate(mp4_names):
+            audiofeat_name = mp4+'.wav.csv'
+            audio[batch_num] = np.genfromtxt(os.path.join(validation_audiofeat_path, audiofeat_name), delimiter=',')
+
+        # get ground truth -> batch_size * 6 * 5 (copied 5 times)
+        gt = np.zeros((batch_size, 6, 5))
+        for batch_num, mp4 in enumerate(mp4_names):
+            gt[batch_num] = np.tile(np.array(validation_gt[mp4]), (6, 1))
+
+        batch['gt'] = gt
+        batch['audio'] = audio
+        batch['video'] = video
+        start += batch_size
+
+        yield batch
+
 # get the set for validation
 def get_validation_set():
     print("Producing Validation Set")
@@ -134,6 +187,18 @@ def load_vid_img(mp4):
         index = i * interval + np.random.randint(1, interval + 1)
         frame_name = 'frame_det_00_%06d.png' % (index)
         frame = mpimg.imread(os.path.join(train_frames_path, mp4.replace('.mp4', ''), frame_name))
+        frames.append(frame)
+    return frames
+
+def load_validation_vid_img(mp4):
+    all_frames = os.listdir(os.path.join(validation_frames_path, mp4.replace('.mp4', '')))
+    num_frames = len(all_frames)  # int
+    interval = num_frames / 6
+    frames=[]
+    for i in range(0, 6):
+        index = i * interval + np.random.randint(1, interval + 1)
+        frame_name = 'frame_det_00_%06d.png' % (index)
+        frame = mpimg.imread(os.path.join(validation_frames_path, mp4.replace('.mp4', ''), frame_name))
         frames.append(frame)
     return frames
 

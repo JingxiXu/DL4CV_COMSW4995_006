@@ -70,6 +70,7 @@ def get_logdirs_and_modelname(PARAMS):
 
 def scope_variables(name):
     with tf.variable_scope(name):
+        print("shit: ", tf.get_variable_scope().name)
         return tf.get_collection(tf.GraphKeys.GLOBAL_VARIABLES, 
                        scope=tf.get_variable_scope().name)
 
@@ -96,13 +97,13 @@ if __name__ == "__main__":
         jx_model.create_model()
         #time stamp 
         start_ts = time.time()
-        #loss
-        #loss = tf.nn.l2_loss(jx_model.frame_features - jx_model.ground_truth)
+        # loss
+        # loss = tf.nn.l2_loss(jx_model.frame_features - jx_model.ground_truth)
         loss = tf.reduce_sum(tf.square(jx_model.frame_features - jx_model.ground_truth)) / PARAMS.batch_size
-        #learning rate
+        # learning rate
         lr = tf.train.exponential_decay(PARAMS.learningRate, global_step,PARAMS.learningRateDecayStep,PARAMS.learningRateDecay,staircase=True)
-        #optimazation
-        #did not use weight decay!!!!!
+        # optimazation
+        # did not use weight decay!!!!!
         train_jx = tf.train.MomentumOptimizer(lr, PARAMS.momentum).minimize(loss,global_step=global_step)
 
         with tf.device('/gpu:' + str(args.gpu)):
@@ -117,35 +118,23 @@ if __name__ == "__main__":
             #learning_rate = tf.summary.scalar("learning_rate", lr)
             all_summary = tf.summary.merge_all()
 
-    print(scope_variables(""))
+    print("scope_variables: ", scope_variables(""))
     saver = tf.train.Saver(scope_variables(""))
 
     # config tensorboard
     train_writer = tf.summary.FileWriter(tensorboard_dir, sess.graph)
     ### start training
     count_batch = 0
-    #JINGXI: please return current_batch to be a structure such as:
-    #current_batch = {'audio': audio_feat, 'image': image_feat, 'gt': ground_truth}
     for current_batch in get_next_batch(PARAMS.batch_size):
-        #run session
+        # run session
         train_summ, loss_val, _ = sess.run([training_summary, loss,train_jx], feed_dict={jx_model.audio_pl: current_batch['audio'],
                                       jx_model.video_pl: current_batch['video'],
                                       jx_model.ground_truth: current_batch['gt']})
         print("step %d/%d: train loss: %f" % (count_batch, PARAMS.nb_batches, loss_val))
-        #show result
+        # show result
         if count_batch % PARAMS.nb_show == 0:
             #log train loss
             train_writer.add_summary(train_summ, count_batch)
-
-        # this method of validation has overflow of GPU resource
-        # if count_batch % PARAMS.nb_validate == 0:
-        #     #validation loss
-        #     validation_summ, validation_loss = sess.run([validation_summary, loss],
-        #                                       feed_dict={jx_model.audio_pl: validation_set['audio'],
-        #                                                  jx_model.video_pl: validation_set['video'],
-        #                                                  jx_model.ground_truth: validation_set['gt']})
-        #     train_writer.add_summary(validation_summ, count_batch)
-        #     print("step %d/%d: validation loss: %f" % (count_batch, PARAMS.nb_batches,validation_loss))
 
         # save model
         if count_batch % PARAMS.nb_save == 0:
@@ -153,12 +142,10 @@ if __name__ == "__main__":
 
         count_batch += 1
         # end condition
-        if count_batch > count_batch > PARAMS.nb_batches:
+        if count_batch > PARAMS.nb_batches:
             break
 
     # Save final model
-    saver.save(sess, os.path.join(log_output_dir, output_model_name))
+    saver.save(sess, os.path.join(log_output_dir, output_model_name + '_final'))
 
-    
-    #TODO: validation not done
 
